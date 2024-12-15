@@ -16,17 +16,10 @@ class AsetTetap extends Model
         'nama_barang',
         'kode',
         'register',
-        'luas',
-        'tahun_pengadaan',
-        'alamat',
-        'status_tanah',
-        'sertifikat_tgl',
-        'sertifikat_no',
-        'penggunaan',
         'asal_usul',
         'harga',
-        'ket',
         'tanggal_perolehan',
+        'ket',
         'status',
     ];
     public function kategoriAset()
@@ -36,5 +29,28 @@ class AsetTetap extends Model
     public function jenisAset()
     {
         return $this->hasOne(JenisBarang::class, 'id', 'id_jenis_barang');
+    }
+
+    public function kibATanah()
+    {
+        return $this->hasOne(KibATanah::class, 'id_at', 'id');
+    }
+
+    public function KibBPeralatanmesin()
+    {
+        return $this->hasOne(KibBPeralatanmesin::class, 'id_at', 'id');
+    }
+    public function KibCGedungbangunan()
+    {
+        return $this->hasOne(KibCGedungbangunan::class, 'id_at', 'id');
+    }
+    public function KibDJalanirigasi()
+    {
+        return $this->hasOne(KibDJalanirigasi::class, 'id_at', 'id');
+    }
+
+    public function KibEAsetlainnya()
+    {
+        return $this->hasOne(KibEAsetlainnya::class, 'id_at', 'id');
     }
 }

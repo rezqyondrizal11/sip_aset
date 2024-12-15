@@ -43,91 +43,17 @@
                             $no = 1;
                         @endphp
                         @foreach ($cat as $key => $c)
-                            <div class="tab-pane {{ $key === 0 ? 'active' : '' }}" id="tab{{ $key }}">
-                                <div class="box">
-                                    <div class="box-header">
-
-                                        <h4> Data {{ $c->name }}</h4>
-                                    </div>
-                                    <div class="box-header">
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#createModal{{ $key }}" data-id="{{ $c->id }}"
-                                            id="openCreateModal{{ $key }}">
-                                            <i class="fa fa-plus"></i> Tambah Data
-                                        </button>
-                                        <a href="{{ route('asettetap.print', ['id' => $c->id, 'year' => request('year') ?? $year]) }}"
-                                            target="_blank" id="btnPrintPDF{{ $key }}" class="btn btn-primary">
-                                            <i class="fa fa-file-pdf-o"></i> Print
-                                        </a>
-
-
-
-                                    </div>
-                                    <div class="box-body">
-                                        @if ($message = Session::get('success'))
-                                            <div class="alert alert-success">
-                                                <p>{{ $message }}</p>
-                                            </div>
-                                        @endif
-                                        <div class="table-responsive">
-                                            <div class="mb-3 ">
-                                                <label for="filterYear{{ $key }}">Filter Tahun:</label>
-                                                <select id="filterYear{{ $key }}" class="form-control">
-                                                    <option value="">Semua Tahun</option>
-                                                    @foreach ($years as $year)
-                                                        <option value="{{ $year }}">{{ $year }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <br>
-                                            <table id="example{{ $key }}"
-                                                class="table table-bordered table-striped" style="width: 100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Aksi</th>
-                                                        <th>Jenis Barang / Nama Barang</th>
-                                                        <th>No. Kode</th>
-                                                        <th>No. Register</th>
-                                                        <th>Luas</th>
-                                                        <th>Tahun Pengadaan</th>
-                                                        <th>Alamat</th>
-                                                        <th>Status Tanah</th>
-                                                        <th>Sertifikat Tanggal</th>
-                                                        <th>Sertifikat No</th>
-                                                        <th>Penggunaan</th>
-                                                        <th>Asal Usul</th>
-                                                        <th>Harga</th>
-                                                        <th>Tanggal Perolehan Aset</th>
-                                                        <th>Usia Aset</th>
-                                                        <th>Keterangan</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="createModal{{ $key }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="createModalLabel{{ $key }}"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="createModalLabel{{ $key }}">Tambah
-                                                        Data {{ $c->name }}</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body" id="CreateFormContainer{{ $key }}">
-                                                    <p class="text-center">Loading...</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @if ($c->id == 1)
+                                @include('aset-tetap.index._kib_a')
+                            @elseif($c->id == 2)
+                                @include('aset-tetap.index._kib_b')
+                            @elseif($c->id == 3)
+                                @include('aset-tetap.index._kib_c')
+                            @elseif($c->id == 4)
+                                @include('aset-tetap.index._kib_d')
+                            @elseif($c->id == 5)
+                                @include('aset-tetap.index._kib_e')
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -255,118 +181,21 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            @foreach ($cat as $key => $c)
-                let table{{ $key }} = $("#example{{ $key }}").DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: {
-                        url: "{{ route('asettetap.data', $c->id) }}",
-                        data: function(d) {
-                            // Mengambil nilai tahun dari dropdown filter
-                            d.year = $('#filterYear{{ $key }}').val();
-                        }
-                    },
-                    columns: [{
-                            data: 'DT_RowIndex',
-                            name: 'DT_RowIndex',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
-                            data: 'aksi',
-                            name: 'aksi',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
-                            data: 'nama_barang',
-                            name: 'nama_barang'
-                        },
-                        {
-                            data: 'kode',
-                            name: 'kode'
-                        },
-                        {
-                            data: 'register',
-                            name: 'register'
-                        },
-                        {
-                            data: 'luas',
-                            name: 'luas'
-                        },
-                        {
-                            data: 'tahun_pengadaan',
-                            name: 'tahun_pengadaan'
-                        },
-                        {
-                            data: 'alamat',
-                            name: 'alamat'
-                        },
-                        {
-                            data: 'status_tanah',
-                            name: 'status_tanah'
-                        },
-                        {
-                            data: 'sertifikat_tgl',
-                            name: 'sertifikat_tgl'
-                        },
-                        {
-                            data: 'sertifikat_no',
-                            name: 'sertifikat_no'
-                        },
-                        {
-                            data: 'penggunaan',
-                            name: 'penggunaan'
-                        },
-                        {
-                            data: 'asal_usul',
-                            name: 'asal_usul'
-                        },
-                        {
-                            data: 'harga',
-                            name: 'harga'
-                        },
-                        {
-                            data: 'tanggal_perolehan',
-                            name: 'tanggal_perolehan'
-                        },
-                        {
-                            data: 'usia_aset',
-                            name: 'usia_aset',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
-                            data: 'ket',
-                            name: 'ket'
-                        }
-                    ]
-                });
+
+    @foreach ($cat as $key => $c)
+        @if ($c->id == 1)
+            @include('aset-tetap.index._script_kib_a')
+        @elseif($c->id == 2)
+            @include('aset-tetap.index._script_kib_b')
+        @elseif($c->id == 3)
+            @include('aset-tetap.index._script_kib_c')
+        @elseif($c->id == 4)
+            @include('aset-tetap.index._script_kib_d')
+        @elseif($c->id == 5)
+            @include('aset-tetap.index._script_kib_e')
+        @endif
+    @endforeach
 
 
-                // Menangani perubahan tahun yang dipilih
-                $('#filterYear{{ $key }}').change(function() {
-                    table{{ $key }}.draw(); // Menyaring ulang DataTable dengan tahun yang dipilih
-
-
-                    // Memperbarui URL cetak dengan tahun yang dipilih
-                    let selectedYear = $('#filterYear{{ $key }}').val();
-                    let printLink =
-                        "{{ route('asettetap.print', ['id' => $c->id, 'year' => 'null']) }}"; // Default 'null' untuk year
-
-                    // Jika tahun dipilih, masukkan tahun tersebut
-                    if (selectedYear) {
-                        printLink = printLink.replace('null',
-                            selectedYear); // Ganti 'null' dengan tahun yang dipilih
-                    }
-
-                    // Memperbarui href link print
-                    $('#btnPrintPDF{{ $key }}').attr('href', printLink);
-                });
-            @endforeach
-        });
-    </script>
 
 @endsection

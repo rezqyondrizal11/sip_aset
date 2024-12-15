@@ -69,7 +69,7 @@ class AsetTidakTetapController extends Controller
         $detail = new DetailAsetTidakTetap();
         $detail->id_att = $data->id;
         $detail->awal = $validatedData['jumlah_awal'];
-        $detail->masuk = $validatedData['jumlah_awal'];
+        $detail->masuk = 0;
         $detail->keluar = 0;
         $detail->sisa = $validatedData['jumlah_awal'];
         $detail->save();
@@ -126,7 +126,7 @@ class AsetTidakTetapController extends Controller
 
             $detail = DetailAsetTidakTetap::where('id_att', $request->id)->first();
             $detail->awal = $validatedData['jumlah_awal'];
-            $detail->masuk = $validatedData['jumlah_awal'];
+            $detail->masuk = 0;
             $detail->keluar = 0;
             $detail->sisa = $validatedData['jumlah_awal'];
             $detail->save();
