@@ -261,7 +261,7 @@ class AsetTetapController extends Controller
         // Jika ada tahun yang dipilih, filter berdasarkan tahun dan status asettetap == 1
         if ($year != "null" && $year != 0) {
             $cat = KategoriAset::with(['asettetap' => function ($query) use ($year) {
-                $query->whereYear('tahun_pengadaan', $year)  // Menyaring berdasarkan tahun
+                $query->whereYear('tanggal_perolehan', $year)  // Menyaring berdasarkan tahun
                     ->where('status', 1);  // Menambahkan filter status asettetap == 1
             }])->find($id);
         } else {
