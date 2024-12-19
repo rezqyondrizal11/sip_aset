@@ -16,7 +16,7 @@
                     orderable: false,
                     searchable: false
                 },
-          
+
                 {
                     data: 'nama_barang',
                     name: 'nama_barang'
@@ -91,7 +91,7 @@
             // Memperbarui URL cetak dengan tahun yang dipilih
             let selectedYear = $('#filterYear{{ $key }}').val();
             let printLink =
-                "{{ route('asettetap.print', ['id' => $c->id, 'year' => 'null']) }}"; // Default 'null' untuk year
+                "{{ route('asettetap.printwali', ['id' => $c->id, 'year' => 'null']) }}"; // Default 'null' untuk year
 
             // Jika tahun dipilih, masukkan tahun tersebut
             if (selectedYear) {
