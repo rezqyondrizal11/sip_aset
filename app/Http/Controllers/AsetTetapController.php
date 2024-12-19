@@ -633,7 +633,7 @@ class AsetTetapController extends Controller
         $query = AsetTetap::where('id_kategori_aset', $categoryId)->where('status', 1);
 
         if ($request->has('year') && $request->year) {
-            $query->whereYear('tahun_pengadaan', $request->year);
+            $query->whereYear('tanggal_perolehan', $request->year);
         }
 
 
