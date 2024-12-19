@@ -6,7 +6,7 @@
         </div>
         <div class="box-header">
        
-            <a href="{{ route('asettetap.print', ['id' => $c->id, 'year' => request('year') ?? $year]) }}"
+            <a href="{{ route('asettetap.printwali', ['id' => $c->id, 'year' => request('year') ?? $year]) }}"
                 target="_blank" id="btnPrintPDF{{ $key }}" class="btn btn-primary">
                 <i class="fa fa-file-pdf-o"></i> Print
             </a>
