@@ -15,7 +15,8 @@
             </div>
             <div class="box-header">
 
-                <a href="{{ route('asettidaktetapwali.print') }}" target="_blank" id="btnPrintPDF" class="btn btn-primary">
+                <a href="{{ route('asettidaktetapwali.print', ['year' => $year]) }}" target="_blank" id="btnPrintPDF"
+                    class="btn btn-primary">
                     <i class="fa fa-file-pdf-o"></i> Print
                 </a>
 
@@ -27,6 +28,34 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
+                <!-- Form pencarian -->
+                <form method="GET" action="{{ route('asettidaktetapwali.index') }}">
+                    <div class="row mb-4">
+                        <!-- Filter Tahun -->
+                        <div class="col-md-12 col-lg-10">
+                            <label for="filterYear" class="control-label">Filter Tahun:</label>
+                            <select id="filterYear" name="filterYear" class="form-control">
+                                <option value="">Semua Tahun</option>
+                                @foreach ($years as $year)
+                                    <option value="{{ $year }}"
+                                        {{ request('filterYear') == $year ? 'selected' : '' }}>
+                                        {{ $year }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+                    <!-- Tombol Cari -->
+                    <div class="d-flex justify-content-end mb-4">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary form-control">
+                            <i class="fa fa-search"></i> Cari
+                        </button>
+                    </div>
+                </form>
+
+                <br>
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>

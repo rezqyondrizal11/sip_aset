@@ -28,13 +28,44 @@ class AsetTidakTetapController extends Controller
 
     public function index(Request $request)
     {
-        $data = AsetTidakTetap::get();
-        return view('aset-tidak-tetap.index', compact('data'));
+        $query = AsetTidakTetap::with('jenisaset');
+        $year = 0;
+        // Filter berdasarkan tahun jika ada parameter filterYear
+        if ($request->filled('filterYear')) {
+            $query->whereYear('tgl_perolehan_aset', $request->filterYear);
+            $year =  $request->filterYear;
+        }
+
+        $data = $query->get();
+
+        // Dapatkan daftar tahun untuk filter
+        $years = AsetTidakTetap::selectRaw('YEAR(tgl_perolehan_aset) as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+
+        return view('aset-tidak-tetap.index', compact('data', 'years', 'year'));
     }
+
+
     public function indexwali(Request $request)
     {
-        $data = AsetTidakTetap::get();
-        return view('aset-tidak-tetap.index-wali', compact('data'));
+        $query = AsetTidakTetap::with('jenisaset');
+        $year = 0;
+        // Filter berdasarkan tahun jika ada parameter filterYear
+        if ($request->filled('filterYear')) {
+            $query->whereYear('tgl_perolehan_aset', $request->filterYear);
+            $year =  $request->filterYear;
+        }
+
+        $data = $query->get();
+
+        // Dapatkan daftar tahun untuk filter
+        $years = AsetTidakTetap::selectRaw('YEAR(tgl_perolehan_aset) as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+        return view('aset-tidak-tetap.index-wali', compact('data', 'year', 'years'));
     }
 
 
@@ -237,9 +268,16 @@ class AsetTidakTetapController extends Controller
             ->with('success', 'Aset Tidak Tetap berhasil dihapus.');
     }
 
-    public function print()
+    public function print($year)
     {
-        $data = AsetTidakTetap::get();
+
+        if ($year == 0) {
+            $data = AsetTidakTetap::get();
+        } else {
+            $data = AsetTidakTetap::whereYear('tgl_perolehan_aset', $year)
+                ->get();
+        }
+
         // Mengirim data ke view
         return view('aset-tidak-tetap.print', compact('data'));
     }

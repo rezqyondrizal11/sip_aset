@@ -16,7 +16,10 @@
                     orderable: false,
                     searchable: false
                 },
-             
+                {
+                    data: 'aksi',
+                    name: 'aksi'
+                },
                 {
                     data: 'nama_barang',
                     name: 'nama_barang'

@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/', [PenghapusanAsetController::class, 'index'])->name('index');
                 Route::get('/data/{categoryId}', [PenghapusanAsetController::class, 'getData'])->name('data');
                 Route::get('/print/{id}/{year}', [PenghapusanAsetController::class, 'print'])->name('print');
+                Route::get('/destroy/{id}', [PenghapusanAsetController::class, 'destroy'])->name('destroy');
             });
 
             //aset tidak tetap
@@ -109,7 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('/update-barang-masuk', [AsetTidakTetapController::class, 'updatemasuk'])->name('updatemasuk');
                 Route::post('/update-barang-keluar', [AsetTidakTetapController::class, 'updatekeluar'])->name('updatekeluar');
 
-                Route::get('/print', [AsetTidakTetapController::class, 'print'])->name('print');
+                Route::get('/print/{year}', [AsetTidakTetapController::class, 'print'])->name('print');
             });
         });
 
@@ -128,7 +129,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::group(['prefix' => '/aset-tidak-tetap/wali', 'as' => 'asettidaktetapwali.'], function () {
                 Route::get('/', [AsetTidakTetapController::class, 'indexwali'])->name('index');
 
-                Route::get('/print', [AsetTidakTetapController::class, 'print'])->name('print');
+                Route::get('/print/{year}', [AsetTidakTetapController::class, 'print'])->name('print');
             });
 
             //penghapusan aset

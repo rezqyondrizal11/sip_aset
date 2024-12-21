@@ -17,7 +17,8 @@
                     id="openCreateModal">
                     <i class="fa fa-plus"></i> Tambah Data
                 </button>
-                <a href="{{ route('asettidaktetap.print') }}" target="_blank" id="btnPrintPDF" class="btn btn-primary">
+                <a href="{{ route('asettidaktetap.print', ['year' => $year]) }}" target="_blank" id="btnPrintPDF"
+                    class="btn btn-primary">
                     <i class="fa fa-file-pdf-o"></i> Print
                 </a>
 
@@ -29,6 +30,35 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
+
+                <!-- Form pencarian -->
+                <form method="GET" action="{{ route('asettidaktetap.index') }}">
+                    <div class="row mb-4">
+                        <!-- Filter Tahun -->
+                        <div class="col-md-12 col-lg-10">
+                            <label for="filterYear" class="control-label">Filter Tahun:</label>
+                            <select id="filterYear" name="filterYear" class="form-control">
+                                <option value="">Semua Tahun</option>
+                                @foreach ($years as $year)
+                                    <option value="{{ $year }}"
+                                        {{ request('filterYear') == $year ? 'selected' : '' }}>
+                                        {{ $year }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+                    <!-- Tombol Cari -->
+                    <div class="d-flex justify-content-end mb-4">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary form-control">
+                            <i class="fa fa-search"></i> Cari
+                        </button>
+                    </div>
+                </form>
+
+                <br>
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -245,6 +275,55 @@
                         console.error("ID is missing.");
                     }
                 });
+
+                document.getElementById('filterYear').addEventListener('change', function() {
+                    const filterYear = this.value;
+
+                    fetch(`{{ route('asettidaktetap.index') }}?filterYear=${filterYear}`, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            const tableBody = document.getElementById('tableBody');
+                            tableBody.innerHTML = '';
+
+                            data.forEach((row, index) => {
+                                const usia = `${row.usia_tahun} Tahun, ${row.usia_bulan} Bulan`;
+
+                                tableBody.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td class="text-center">
+                        <a href="#" class="btn btn-primary openUpdateModal" data-id="${row.id}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="#" onclick="return klikDelete('/asettidaktetap/destroy/${row.id}');" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                    <td>${row.jenisaset.name}</td>
+                    <td>${row.nama}</td>
+                    <td>${new Intl.NumberFormat().format(row.harga)}</td>
+                    <td>${row.asal_perolehan}</td>
+                    <td>${new Intl.NumberFormat().format(row.jumlah_awal)}</td>
+                    <td>${new Intl.NumberFormat().format(row.jumlah_masuk)}</td>
+                    <td>${new Intl.NumberFormat().format(row.jumlah_keluar)}</td>
+                    <td>${row.sisa}</td>
+                    <td>${row.keterangan}</td>
+                    <td>${row.tgl_beli}</td>
+                    <td>${row.tgl_pakai}</td>
+                    <td>${row.tgl_perolehan_aset}</td>
+                    <td>${usia}</td>
+                    <td>${row.updated_at}</td>
+                </tr>
+            `;
+                            });
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+
             });
         </script>
 

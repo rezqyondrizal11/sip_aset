@@ -16,7 +16,10 @@
                     orderable: false,
                     searchable: false
                 },
-               
+                {
+                    data: 'aksi',
+                    name: 'aksi'
+                },
                 {
                     data: 'nama_barang',
                     name: 'nama_barang'
@@ -41,7 +44,7 @@
                     data: 'bahan',
                     name: 'bahan'
                 },
-                  {
+                {
                     data: 'tahun_pengadaan',
                     name: 'tahun_pengadaan'
                 },
@@ -61,7 +64,7 @@
                     data: 'nomor_polisi',
                     name: 'nomor_polisi'
                 },
-              
+
                 {
                     data: 'nomor_bpkb',
                     name: 'nomor_bpkb'

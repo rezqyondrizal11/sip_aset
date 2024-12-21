@@ -104,7 +104,14 @@ class PenghapusanAsetController extends Controller
     {
         return DataTables::of($query)
             ->addIndexColumn()
-
+            ->addColumn('aksi', function ($row) {
+                $deleteUrl = route('penghapusanaset.destroy', ['id' => $row->id]);
+                return '
+         
+                    <a href="#" onclick="return klikDelete(\'' . $deleteUrl . '\');" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>';
+            })
             ->addColumn('nama_barang', function ($row) {
                 return $row->jenisAset->name . ' / ' . $row->nama_barang;
             })
@@ -155,7 +162,14 @@ class PenghapusanAsetController extends Controller
     {
         return DataTables::of($query)
             ->addIndexColumn()
-
+            ->addColumn('aksi', function ($row) {
+                $deleteUrl = route('penghapusanaset.destroy', ['id' => $row->id]);
+                return '
+         
+                    <a href="#" onclick="return klikDelete(\'' . $deleteUrl . '\');" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>';
+            })
             ->addColumn('nama_barang', function ($row) {
                 return $row->jenisAset->name . ' / ' . $row->nama_barang;
             })
@@ -206,7 +220,14 @@ class PenghapusanAsetController extends Controller
     {
         return DataTables::of($query)
             ->addIndexColumn()
-
+            ->addColumn('aksi', function ($row) {
+                $deleteUrl = route('penghapusanaset.destroy', ['id' => $row->id]);
+                return '
+         
+                    <a href="#" onclick="return klikDelete(\'' . $deleteUrl . '\');" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>';
+            })
             ->addColumn('nama_barang', function ($row) {
                 return $row->jenisAset->name . ' / ' . $row->nama_barang;
             })
@@ -257,7 +278,14 @@ class PenghapusanAsetController extends Controller
     {
         return DataTables::of($query)
             ->addIndexColumn()
-
+            ->addColumn('aksi', function ($row) {
+                $deleteUrl = route('penghapusanaset.destroy', ['id' => $row->id]);
+                return '
+         
+                    <a href="#" onclick="return klikDelete(\'' . $deleteUrl . '\');" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>';
+            })
             ->addColumn('nama_barang', function ($row) {
                 return $row->jenisAset->name . ' / ' . $row->nama_barang;
             })
@@ -313,7 +341,14 @@ class PenghapusanAsetController extends Controller
     {
         return DataTables::of($query)
             ->addIndexColumn()
-
+            ->addColumn('aksi', function ($row) {
+                $deleteUrl = route('penghapusanaset.destroy', ['id' => $row->id]);
+                return '
+         
+                    <a href="#" onclick="return klikDelete(\'' . $deleteUrl . '\');" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>';
+            })
             ->addColumn('nama_barang', function ($row) {
                 return $row->jenisAset->name . ' / ' . $row->nama_barang;
             })
@@ -357,5 +392,12 @@ class PenghapusanAsetController extends Controller
             })
             ->rawColumns(['aksi'])
             ->make(true);
+    }
+
+    public function destroy($id)
+    {
+        AsetTetap::find($id)->delete();
+        return redirect()->route('penghapusanaset.index')
+            ->with('success', 'Penghapusan Aset deleted successfully');
     }
 }

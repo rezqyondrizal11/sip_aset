@@ -36,7 +36,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                        
+                            <th>Aksi</th>
+
                             <th>Jenis Barang / Nama Barang</th>
                             <th>No. Kode</th>
                             <th>No. Register</th>

@@ -5,7 +5,7 @@
             <h4> Data {{ $c->name }}</h4>
         </div>
         <div class="box-header">
-       
+
             <a href="{{ route('penghapusanaset.print', ['id' => $c->id, 'year' => request('year') ?? $year]) }}"
                 target="_blank" id="btnPrintPDF{{ $key }}" class="btn btn-primary">
                 <i class="fa fa-file-pdf-o"></i> Print
@@ -36,7 +36,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                      
+                            <th>Aksi</th>
+
                             <th>Jenis Barang / Nama Barang</th>
                             <th>No. Kode</th>
                             <th>No. Register</th>

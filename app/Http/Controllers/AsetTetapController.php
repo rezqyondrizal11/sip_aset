@@ -35,7 +35,10 @@ class AsetTetapController extends Controller
 
         $cat = KategoriAset::where('status', 1)
             ->get();
-        $years = AsetTetap::selectRaw('YEAR(tanggal_perolehan) as year')->distinct()->pluck('year');
+        $years = AsetTetap::selectRaw('YEAR(tanggal_perolehan) as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
 
         return view('aset-tetap.index', compact('cat', 'years', 'year'));
     }
