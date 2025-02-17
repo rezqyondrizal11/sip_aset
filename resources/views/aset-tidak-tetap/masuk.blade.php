@@ -30,7 +30,7 @@
         <tr>
             <th>No</th>
             <th>Tanggal</th>
-            <th>Awal</th>
+            <th>Stok</th>
             <th>Masuk</th>
             <th>Keluar</th>
             <th>Sisa</th>
@@ -50,7 +50,7 @@
                 <td><?= date('d-M-Y H:i:s', strtotime($row->created_at)) ?></td>
 
 
-                <td><?= number_format($row->awal) ?></td>
+                <td><?= number_format($row->stok) ?></td>
                 <td>
                     <?= number_format($row->masuk) ?>
 

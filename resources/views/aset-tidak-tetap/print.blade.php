@@ -121,7 +121,7 @@
                         <th>Nama Barang</th>
                         <th> Harga</th>
                         <th>Asal Perolehan</th>
-                        <th>Jumlah Awal</th>
+                        <th>Stok</th>
                         <th>Jumal Masuk</th>
                         <th>Jumlah Keluar</th>
                         <th>Sisa</th>
@@ -217,7 +217,7 @@
                         <br><br>
                         (...................................)
                     </th>
-                    <th style="text-align:center;">Agam, <?= date('l d M Y') ?>
+                    <th style="text-align:center;">Sipinang, <?= date('l d M Y') ?>
                         <br>
                         Pengurus Aset
                         <br><br>

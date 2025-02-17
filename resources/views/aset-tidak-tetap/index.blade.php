@@ -68,7 +68,7 @@
                             <th>Nama Barang</th>
                             <th> Harga</th>
                             <th>Asal Perolehan</th>
-                            <th>Jumlah Awal</th>
+                            <th>Stok</th>
                             <th>Jumal Masuk</th>
                             <th>Jumlah Keluar</th>
                             <th>Sisa</th>

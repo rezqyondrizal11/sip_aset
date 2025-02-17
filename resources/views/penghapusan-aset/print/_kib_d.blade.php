@@ -213,7 +213,7 @@
                         <br><br>
                         (...................................)
                     </th>
-                    <th style="text-align:center;">Agam, <?= date('l d M Y') ?>
+                    <th style="text-align:center;">Sipinang, <?= date('l d M Y') ?>
                         <br>
                         Pengurus Aset
                         <br><br>
