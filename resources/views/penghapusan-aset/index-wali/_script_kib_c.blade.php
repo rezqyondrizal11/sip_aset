@@ -1,4 +1,5 @@
-datawali<script>
+datawali
+<script>
     $(document).ready(function() {
         let table{{ $key }} = $("#example{{ $key }}").DataTable({
             processing: true,
@@ -16,7 +17,7 @@ datawali<script>
                     orderable: false,
                     searchable: false
                 },
-            
+
                 {
                     data: 'nama_barang',
                     name: 'nama_barang'
@@ -68,6 +69,10 @@ datawali<script>
                 {
                     data: 'asal_usul',
                     name: 'asal_usul'
+                },
+                {
+                    data: 'harga_beli',
+                    name: 'harga_beli'
                 },
                 {
                     data: 'harga',

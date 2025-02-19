@@ -17,6 +17,7 @@ class AsetTetap extends Model
         'kode',
         'register',
         'asal_usul',
+        'harga_beli',
         'harga',
         'tanggal_perolehan',
         'ket',

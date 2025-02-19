@@ -44,8 +44,7 @@
 
     <div class="form-group">
         <label for="luas" class="form-label">Luas (M2)</label>
-        <input type="text" class="form-control" id="luas" name="luas" 
-        value="{{ $data->kibATanah->luas }}">
+        <input type="text" class="form-control" id="luas" name="luas" value="{{ $data->kibATanah->luas }}">
         @error('luas')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -53,8 +52,7 @@
     <div class="form-group">
         <label for="tahun_pengadaan" class="form-label">Tahun Pengadaan</label>
         <input type="number" class="form-control" id="tahun_pengadaan" name="tahun_pengadaan" min="1900"
-            max="{{ date('Y') }}" step="1" 
-            value="{{ $data->kibATanah->tahun_pengadaan }}">
+            max="{{ date('Y') }}" step="1" value="{{ $data->kibATanah->tahun_pengadaan }}">
         @error('tahun_pengadaan')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -113,6 +111,14 @@
             <option value="Swadaya" {{ $data->asal_usul == 'Swadaya' ? 'selected' : '' }}>Swadaya</option>
         </select>
         @error('asal_usul')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="harga_beli" class="form-label">Harga Beli</label>
+        <input type="number" class="form-control" id="harga_beli" name="harga_beli"
+            value="{{ $data->harga_beli }}" value="{{ old('harga_beli') }}">
+        @error('harga_beli')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>

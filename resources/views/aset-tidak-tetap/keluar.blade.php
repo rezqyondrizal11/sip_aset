@@ -22,7 +22,7 @@
     </div>
 </form>
 
-
+<div id="alertContainer"></div>
 
 
 <table id="example1" class="table table-bordered table-striped">
@@ -71,40 +71,65 @@
 <script src="{{ asset('admin') }}/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 
 <script>
-    $('#updateForm').submit(function(e) {
-        e.preventDefault();
+    $(document).ready(function() {
+        $('#updateForm').submit(function(e) {
+            e.preventDefault(); // Mencegah form dari reload default
 
-        var form = $(this);
-        var actionUrl = form.attr('action');
-        var formData = form.serialize();
+            var form = $(this);
+            var actionUrl = form.attr('action');
+            var formData = form.serialize();
 
-        var submitButton = form.find('button[type="submit"]');
+            var submitButton = form.find('button[type="submit"]');
 
-        // Menonaktifkan tombol submit
-        submitButton.prop('disabled', true);
-        submitButton.text('Processing...'); // Mengubah teks tombol
-        $.ajax({
-            url: actionUrl,
-            method: 'POST',
-            data: formData,
-            success: function(response) {
+            // Nonaktifkan tombol saat proses berlangsung
+            submitButton.prop('disabled', true).text('Processing...');
 
-                location.reload(); // Or update your table dynamically
-            },
-            error: function(xhr) {
-                var errors = xhr.responseJSON.errors;
-                // Clear previous error messages
-                $('.text-danger').remove();
+            // Bersihkan pesan error dan alert sebelumnya
+            $('#alertContainer').html('');
+            $('.text-danger').remove();
 
-                // Show new error messages
-                $.each(errors, function(field, messages) {
-                    var input = $('[name="' + field + '"]');
-                    input.after('<div class="text-danger">' + messages.join(
-                        ', ') + '</div>');
-                });
-                submitButton.prop('disabled', false);
-                submitButton.text('Submit'); // Mengubah teks tombol
-            }
+            $.ajax({
+                url: actionUrl,
+                method: 'POST',
+                data: formData,
+                dataType: 'json', // Pastikan response dalam format JSON
+                success: function(response) {
+                    submitButton.prop('disabled', false).text(
+                        'Submit'); // Aktifkan tombol kembali
+
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        $('#alertContainer').html(
+                            `<div class="alert alert-danger">${response.message}</div>`
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    submitButton.prop('disabled', false).text(
+                        'Submit'); // Aktifkan tombol kembali
+
+                    try {
+                        var errors = xhr.responseJSON.errors;
+
+                        if (errors) {
+                            $.each(errors, function(field, messages) {
+                                var input = $('[name="' + field + '"]');
+                                input.after('<div class="text-danger">' + messages
+                                    .join(', ') + '</div>');
+                            });
+                        } else {
+                            $('#alertContainer').html(
+                                '<div class="alert alert-danger">Terjadi kesalahan pada server.</div>'
+                            );
+                        }
+                    } catch (e) {
+                        $('#alertContainer').html(
+                            '<div class="alert alert-danger">Terjadi kesalahan yang tidak terduga.</div>'
+                        );
+                    }
+                }
+            });
         });
     });
 </script>

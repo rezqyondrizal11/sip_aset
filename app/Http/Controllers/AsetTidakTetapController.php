@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB as FacadesDB;
@@ -28,6 +29,7 @@ class AsetTidakTetapController extends Controller
 
     public function index(Request $request)
     {
+
         $query = AsetTidakTetap::with('jenisaset');
         $year = 0;
         // Filter berdasarkan tahun jika ada parameter filterYear
@@ -212,33 +214,52 @@ class AsetTidakTetapController extends Controller
     {
         // Validasi input
         $validatedData = $request->validate([
-            'id_att' => 'required|integer',
-            'keluar' => 'required|string|max:255',
-
+            'id_att' => 'required|integer|exists:aset_tidak_tetap,id', // Pastikan ID valid
+            'keluar' => 'required|numeric|min:1', // Pastikan angka positif
         ]);
 
         $data = AsetTidakTetap::find($validatedData['id_att']);
+
+        // Jika data tidak ditemukan (sudah dicek di validasi, tapi untuk jaga-jaga)
+        if (!$data) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data tidak ditemukan.'
+            ]);
+        }
+
+        // Hitung sisa setelah keluar
         $sisa = $data->sisa - $validatedData['keluar'];
 
+        // Cek stok cukup atau tidak
+        if ($sisa < 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'STOK TIDAK CUKUP, PERMINTAAN TIDAK BISA DIPROSES.'
+            ]);
+        }
 
+        // Simpan transaksi ke DetailAsetTidakTetap
         $detail = new DetailAsetTidakTetap();
-        $detail->id_att =  $validatedData['id_att'];
-        $detail->awal =  $data->sisa;
+        $detail->id_att = $validatedData['id_att'];
+        $detail->awal = $data->sisa;
         $detail->keluar = $validatedData['keluar'];
         $detail->masuk = 0;
         $detail->sisa = $sisa;
         $detail->save();
 
-        $data->jumlah_keluar = $data->jumlah_keluar + $detail->keluar;
-
-
+        // Update jumlah keluar & sisa di AsetTidakTetap
+        $data->jumlah_keluar += $validatedData['keluar'];
+        $data->sisa = $data->jumlah_masuk - $data->jumlah_keluar;
         $data->save();
-        $data->sisa =   $data->jumlah_masuk  - $data->jumlah_keluar;
-        $data->save();
-        // Redirect dengan pesan sukses
-        return redirect()->route('asettidaktetap.index')
-            ->with('success', 'Aset Tidak Tetap berhasil diupdate.');
+
+        // Beri respons sukses
+        return response()->json([
+            'success' => true,
+            'message' => 'Permintaan berhasil diproses.'
+        ]);
     }
+
     public function keluar($id)
     {
 

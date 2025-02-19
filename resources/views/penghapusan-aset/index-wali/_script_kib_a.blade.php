@@ -16,7 +16,7 @@
                     orderable: false,
                     searchable: false
                 },
-            
+
                 {
                     data: 'nama_barang',
                     name: 'nama_barang'
@@ -60,6 +60,10 @@
                 {
                     data: 'asal_usul',
                     name: 'asal_usul'
+                },
+                {
+                    data: 'harga_beli',
+                    name: 'harga_beli'
                 },
                 {
                     data: 'harga',

@@ -54,7 +54,8 @@
     </div>
     <div class="form-group">
         <label for="spesifikasi" class="form-label">Spesifikasi</label>
-        <input type="text" class="form-control" id="spesifikasi" name="spesifikasi" value="{{ old('spesifikasi') }}">
+        <input type="text" class="form-control" id="spesifikasi" name="spesifikasi"
+            value="{{ old('spesifikasi') }}">
         @error('spesifikasi')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -62,7 +63,8 @@
 
     <div class="form-group">
         <label for="asal_daerah" class="form-label">Asal Daerah</label>
-        <input type="text" class="form-control" id="asal_daerah" name="asal_daerah" value="{{ old('asal_daerah') }}">
+        <input type="text" class="form-control" id="asal_daerah" name="asal_daerah"
+            value="{{ old('asal_daerah') }}">
         @error('asal_daerah')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -118,6 +120,14 @@
             <option value="Swadaya">Swadaya</option>
         </select>
         @error('asal_usul')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="harga_beli" class="form-label">Harga Beli</label>
+        <input type="number" class="form-control" id="harga_beli" name="harga_beli"
+            value="{{ old('harga_beli') }}">
+        @error('harga_beli')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>

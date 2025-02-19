@@ -25,12 +25,20 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
                     </div>
                 @endif
-
+                @if (Session::has('dangerrr'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ Session::get('dangerrr') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <!-- Form pencarian -->
                 <form method="GET" action="{{ route('asettidaktetap.index') }}">
                     <div class="row mb-4">
@@ -113,11 +121,11 @@
                                 </td>
                                 <td><?= $row->jenisaset->name ?></td>
                                 <td><?= $row->nama ?></td>
-                                <td><?= number_format($row->harga) ?></td>
+                                <td><?= 'Rp ' . number_format($row->harga, 0, ',', '.') ?></td>
                                 <td><?= $row->asal_perolehan ?></td>
-                                <td><?= number_format($row->jumlah_awal) ?></td>
+                                <td> <?= number_format($row->jumlah_awal, 0, ',', '.') ?></td>
                                 <td>
-                                    <?= number_format($row->jumlah_masuk) ?>
+                                    <?= number_format($row->jumlah_masuk, 0, ',', '.') ?>
                                     <a href="#" class="btn btn-primary openUpdateMasukModal" data-toggle="modal"
                                         data-target="#updateMasukModal" data-id="{{ $id }}">
                                         <i class="fa fa-plus"></i>
@@ -125,7 +133,7 @@
                                 </td>
                                 <td>
 
-                                    </a><?= number_format($row->jumlah_keluar) ?>
+                                    </a> <?= number_format($row->jumlah_keluar, 0, ',', '.') ?>
                                     <a href="#" class="btn btn-primary openUpdateKeluarModal" data-toggle="modal"
                                         data-target="#updateKeluarModal" data-id="{{ $id }}">
                                         <i class="fa fa-plus"></i>
@@ -191,6 +199,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h5 class="modal-title" id="<?= $modal['id'] ?>Label"><?= $modal['title'] ?></h5>
+
+
                     </div>
                     <div class="modal-body">
                         <div id="<?= $modal['containerId'] ?>">

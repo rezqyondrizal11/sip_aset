@@ -118,7 +118,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-              
+
                         <th>Jenis Barang / Nama Barang</th>
                         <th>No. Kode</th>
                         <th>No. Register</th>
@@ -131,6 +131,7 @@
                         <th>Ukuran</th>
                         <th>Jumlah</th>
                         <th>Asal Usul</th>
+                        <th>Harga Beli</th>
                         <th>Harga</th>
                         <th>Tanggal Perolehan Aset</th>
                         <th>Usia Aset</th>
@@ -140,12 +141,14 @@
                 <tbody>
                     @php
                         $total = 0;
+                        $total1 = 0;
                     @endphp
                     @foreach ($cat->asettetap as $keyy => $aset)
                         @php
                             $id = $aset->id;
                             $iterationNumber = $loop->index + 1;
                             $total += $aset->harga;
+                            $total1 += $aset->harga_beli;
                         @endphp
                         <tr>
                             <td>{{ $iterationNumber }}</td>
@@ -163,7 +166,8 @@
                             <td>{{ $aset->KibEAsetlainnya->ukuran }}</td>
                             <td>{{ $aset->KibEAsetlainnya->jumlah }}</td>
                             <td>{{ $aset->asal_usul }}</td>
-                            <td>{{ number_format($aset->harga) }}</td>
+                            <td>Rp {{ number_format($aset->harga_beli, 0, ',', '.') }}</td>
+                            <td>Rp {{ number_format($aset->harga, 0, ',', '.') }}</td>
                             <td>{{ date('d-M-Y', strtotime($aset->tanggal_perolehan)) }}
                             </td>
 
@@ -184,10 +188,10 @@
                             <td>{{ $aset->ket }}</td>
                         </tr>
                     @endforeach
-
                     <tr>
-                        <th colspan="13">Total Harga</th>
-                        <th colspan="4">{{ number_format($total) }}</th>
+                        <th colspan="12">Total Harga</th>
+                        <th colspan="1">Rp {{ number_format($total1, 0, ',', '.') }}</th>
+                        <th colspan="4">Rp {{ number_format($total, 0, ',', '.') }}</th>
                     </tr>
                 </tbody>
             </table>
@@ -195,6 +199,11 @@
 
 
 
+        @php
+            use App\Models\User;
+            $walinagari = User::where('role', 'walinagari')->where('status', 1)->first();
+
+        @endphp
         <div class="box-body">
             <table>
                 <tr>
@@ -204,7 +213,7 @@
                         <br><br>
                         <br><br>
                         <br><br>
-                        (...................................)
+                        ({{ $walinagari->name }})
                     </th>
                     <th style="text-align:center;">Sipinang, <?= date('l d M Y') ?>
                         <br>
@@ -212,7 +221,7 @@
                         <br><br>
                         <br><br>
                         <br><br>
-                        (...................................)
+                        ({{ Auth::user() ? Auth::user()->name : '' }})
                     </th>
                 </tr>
             </table>

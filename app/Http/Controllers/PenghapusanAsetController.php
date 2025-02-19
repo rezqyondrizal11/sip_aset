@@ -143,7 +143,12 @@ class PenghapusanAsetController extends Controller
             ->addColumn('penggunaan', function ($row) {
                 return $row->kibATanah->penggunaan ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -202,6 +207,12 @@ class PenghapusanAsetController extends Controller
             ->addColumn('tahun_pengadaan', function ($row) {
                 return $row->KibBPeralatanmesin->tahun_pengadaan ?? '-';
             })
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -259,6 +270,12 @@ class PenghapusanAsetController extends Controller
             })
             ->addColumn('nomor_kode_tanah', function ($row) {
                 return $row->KibCGedungbangunan->no_kode_tanah ?? '-';
+            })
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
             })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
@@ -321,7 +338,12 @@ class PenghapusanAsetController extends Controller
             ->addColumn('nomor_kode_tanah', function ($row) {
                 return $row->KibDJalanirigasi->no_kode_tanah ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -378,7 +400,12 @@ class PenghapusanAsetController extends Controller
             ->addColumn('jumlah', function ($row) {
                 return $row->KibEAsetlainnya->jumlah ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))

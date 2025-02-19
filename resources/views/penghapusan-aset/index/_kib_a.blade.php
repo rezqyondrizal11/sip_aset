@@ -49,6 +49,7 @@
                             <th>Sertifikat No</th>
                             <th>Penggunaan</th>
                             <th>Asal Usul</th>
+                            <th>Harga Beli</th>
                             <th>Harga</th>
                             <th>Tanggal Perolehan Aset</th>
                             <th>Usia Aset</th>

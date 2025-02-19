@@ -46,7 +46,7 @@
                     data: 'bahan',
                     name: 'bahan'
                 },
-                  {
+                {
                     data: 'tahun_pengadaan',
                     name: 'tahun_pengadaan'
                 },
@@ -66,7 +66,7 @@
                     data: 'nomor_polisi',
                     name: 'nomor_polisi'
                 },
-              
+
                 {
                     data: 'nomor_bpkb',
                     name: 'nomor_bpkb'
@@ -74,6 +74,10 @@
                 {
                     data: 'asal_usul',
                     name: 'asal_usul'
+                },
+                {
+                    data: 'harga_beli',
+                    name: 'harga_beli'
                 },
                 {
                     data: 'harga',

@@ -43,21 +43,24 @@
     </div>
     <div class="form-group">
         <label for="merk_type" class="form-label">Merk/Type</label>
-        <input type="text" class="form-control" id="merk_type" name="merk_type" value="{{ $data->KibBPeralatanmesin->merk_type }}">
+        <input type="text" class="form-control" id="merk_type" name="merk_type"
+            value="{{ $data->KibBPeralatanmesin->merk_type }}">
         @error('merk_type')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="ukuran_cc" class="form-label">Ukuran CC</label>
-        <input type="text" class="form-control" id="ukuran_cc" name="ukuran_cc" value="{{ $data->KibBPeralatanmesin->ukuran_cc }}">
+        <input type="text" class="form-control" id="ukuran_cc" name="ukuran_cc"
+            value="{{ $data->KibBPeralatanmesin->ukuran_cc }}">
         @error('ukuran_cc')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="bahan" class="form-label">Bahan</label>
-        <input type="text" class="form-control" id="bahan" name="bahan" value="{{ $data->KibBPeralatanmesin->bahan }}">
+        <input type="text" class="form-control" id="bahan" name="bahan"
+            value="{{ $data->KibBPeralatanmesin->bahan }}">
         @error('bahan')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -72,35 +75,40 @@
     </div>
     <div class="form-group">
         <label for="no_pabrik" class="form-label">Nomor Pabrik</label>
-        <input type="text" class="form-control" id="no_pabrik" name="no_pabrik" value="{{ $data->KibBPeralatanmesin->no_pabrik }}">
+        <input type="text" class="form-control" id="no_pabrik" name="no_pabrik"
+            value="{{ $data->KibBPeralatanmesin->no_pabrik }}">
         @error('no_pabrik')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="no_rangka" class="form-label">Nomor Rangka</label>
-        <input type="text" class="form-control" id="no_rangka" name="no_rangka" value="{{ $data->KibBPeralatanmesin->no_rangka }}">
+        <input type="text" class="form-control" id="no_rangka" name="no_rangka"
+            value="{{ $data->KibBPeralatanmesin->no_rangka }}">
         @error('no_rangka')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="no_mesin" class="form-label">Nomor Mesin</label>
-        <input type="text" class="form-control" id="no_mesin" name="no_mesin" value="{{ $data->KibBPeralatanmesin->no_mesin }}">
+        <input type="text" class="form-control" id="no_mesin" name="no_mesin"
+            value="{{ $data->KibBPeralatanmesin->no_mesin }}">
         @error('no_mesin')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="no_polisi" class="form-label">Nomor Polisi</label>
-        <input type="text" class="form-control" id="no_polisi" name="no_polisi" value="{{ $data->KibBPeralatanmesin->no_polisi }}">
+        <input type="text" class="form-control" id="no_polisi" name="no_polisi"
+            value="{{ $data->KibBPeralatanmesin->no_polisi }}">
         @error('no_polisi')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="no_bpkb" class="form-label">Nomor BPKB</label>
-        <input type="text" class="form-control" id="no_bpkb" name="no_bpkb" value="{{ $data->KibBPeralatanmesin->no_bpkb }}">
+        <input type="text" class="form-control" id="no_bpkb" name="no_bpkb"
+            value="{{ $data->KibBPeralatanmesin->no_bpkb }}">
         @error('no_bpkb')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -118,6 +126,14 @@
             <option value="Swadaya" {{ $data->asal_usul == 'Swadaya' ? 'selected' : '' }}>Swadaya</option>
         </select>
         @error('asal_usul')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="harga_beli" class="form-label">Harga Beli</label>
+        <input type="number" class="form-control" id="harga_beli" name="harga_beli"
+            value="{{ $data->harga_beli }}" value="{{ old('harga_beli') }}">
+        @error('harga_beli')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>

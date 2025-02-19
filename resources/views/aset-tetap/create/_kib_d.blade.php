@@ -38,7 +38,7 @@
         @enderror
     </div>
 
-  
+
     <div class="form-group">
         <label for="konstruksi" class="form-label">Konstruksi</label>
         <input type="text" class="form-control" id="konstruksi" name="konstruksi" value="{{ old('konstruksi') }}">
@@ -99,19 +99,21 @@
 
     <div class="form-group">
         <label for="status_tanah" class="form-label">Status Tanah</label>
-        <input type="text" class="form-control" id="status_tanah" name="status_tanah" value="{{ old('status_tanah') }}">
+        <input type="text" class="form-control" id="status_tanah" name="status_tanah"
+            value="{{ old('status_tanah') }}">
         @error('status_tanah')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="no_kode_tanah" class="form-label">Nomor Kode Tanah</label>
-        <input type="text" class="form-control" id="no_kode_tanah" name="no_kode_tanah" value="{{ old('no_kode_tanah') }}">
+        <input type="text" class="form-control" id="no_kode_tanah" name="no_kode_tanah"
+            value="{{ old('no_kode_tanah') }}">
         @error('no_kode_tanah')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
-  
+
     <div class="form-group">
         <label for="asal_usul" class="form-label">Asal Usul</label>
 
@@ -125,6 +127,14 @@
             <option value="Swadaya">Swadaya</option>
         </select>
         @error('asal_usul')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="harga_beli" class="form-label">Harga Beli</label>
+        <input type="number" class="form-control" id="harga_beli" name="harga_beli"
+            value="{{ old('harga_beli') }}">
+        @error('harga_beli')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>

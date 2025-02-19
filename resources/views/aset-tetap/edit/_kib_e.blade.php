@@ -44,21 +44,24 @@
 
     <div class="form-group">
         <label for="judul" class="form-label">Judul</label>
-        <input type="text" class="form-control" id="judul" name="judul" value="{{  $data->KibEAsetlainnya->judul}}">
+        <input type="text" class="form-control" id="judul" name="judul"
+            value="{{ $data->KibEAsetlainnya->judul }}">
         @error('judul')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="pencipta" class="form-label">Pencipta</label>
-        <input type="text" class="form-control" id="pencipta" name="pencipta" value="{{  $data->KibEAsetlainnya->pencipta}}">
+        <input type="text" class="form-control" id="pencipta" name="pencipta"
+            value="{{ $data->KibEAsetlainnya->pencipta }}">
         @error('pencipta')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="spesifikasi" class="form-label">Spesifikasi</label>
-        <input type="text" class="form-control" id="spesifikasi" name="spesifikasi" value="{{ $data->KibEAsetlainnya->spesifikasi }}">
+        <input type="text" class="form-control" id="spesifikasi" name="spesifikasi"
+            value="{{ $data->KibEAsetlainnya->spesifikasi }}">
         @error('spesifikasi')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -66,7 +69,8 @@
 
     <div class="form-group">
         <label for="asal_daerah" class="form-label">Asal Daerah</label>
-        <input type="text" class="form-control" id="asal_daerah" name="asal_daerah" value="{{$data->KibEAsetlainnya->asal_daerah }}">
+        <input type="text" class="form-control" id="asal_daerah" name="asal_daerah"
+            value="{{ $data->KibEAsetlainnya->asal_daerah }}">
         @error('asal_daerah')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -74,7 +78,8 @@
 
     <div class="form-group">
         <label for="bahan" class="form-label">Bahan</label>
-        <input type="text" class="form-control" id="bahan" name="bahan" value="{{ $data->KibEAsetlainnya->bahan }}">
+        <input type="text" class="form-control" id="bahan" name="bahan"
+            value="{{ $data->KibEAsetlainnya->bahan }}">
         @error('bahan')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -82,21 +87,24 @@
 
     <div class="form-group">
         <label for="jenis" class="form-label">Jenis</label>
-        <input type="text" class="form-control" id="jenis" name="jenis" value="{{ $data->KibEAsetlainnya->jenis }}">
+        <input type="text" class="form-control" id="jenis" name="jenis"
+            value="{{ $data->KibEAsetlainnya->jenis }}">
         @error('jenis')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="ukuran" class="form-label">Ukuran</label>
-        <input type="text" class="form-control" id="ukuran" name="ukuran" value="{{ $data->KibEAsetlainnya->ukuran }}">
+        <input type="text" class="form-control" id="ukuran" name="ukuran"
+            value="{{ $data->KibEAsetlainnya->ukuran }}">
         @error('ukuran')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="jumlah" class="form-label">jumlah</label>
-        <input type="number" class="form-control" id="jumlah" name="jumlah" value="{{$data->KibEAsetlainnya->jumlah }}">
+        <input type="number" class="form-control" id="jumlah" name="jumlah"
+            value="{{ $data->KibEAsetlainnya->jumlah }}">
         @error('jumlah')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -104,7 +112,7 @@
     <div class="form-group">
         <label for="tahun" class="form-label">Tahun Pembelian</label>
         <input type="number" class="form-control" id="tahun" name="tahun" min="1900"
-            max="{{ date('Y') }}" step="1" value="{{$data->KibEAsetlainnya->tahun }}">
+            max="{{ date('Y') }}" step="1" value="{{ $data->KibEAsetlainnya->tahun }}">
         @error('tahun_pengadaan')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -122,6 +130,14 @@
             <option value="Swadaya" {{ $data->asal_usul == 'Swadaya' ? 'selected' : '' }}>Swadaya</option>
         </select>
         @error('asal_usul')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="harga_beli" class="form-label">Harga Beli</label>
+        <input type="number" class="form-control" id="harga_beli" name="harga_beli"
+            value="{{ $data->harga_beli }}" value="{{ old('harga_beli') }}">
+        @error('harga_beli')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>

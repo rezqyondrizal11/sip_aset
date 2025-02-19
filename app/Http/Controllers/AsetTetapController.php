@@ -92,6 +92,8 @@ class AsetTetapController extends Controller
                 'sertifikat_no' => 'required',
                 'penggunaan' => 'required',
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
+
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -127,6 +129,7 @@ class AsetTetapController extends Controller
                 'no_bpkb' => 'required',
                 'asal_usul' => 'required',
                 'tahun_pengadaan' => 'required',
+                'harga_beli' => 'required|numeric',
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -162,6 +165,7 @@ class AsetTetapController extends Controller
                 'status_tanah' => 'required',
                 'no_kode_tanah' => 'required',
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -200,6 +204,7 @@ class AsetTetapController extends Controller
                 'no_kode_tanah' => 'required',
 
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -236,6 +241,7 @@ class AsetTetapController extends Controller
                 'jumlah' => 'required',
                 'tahun' => 'required',
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -365,7 +371,12 @@ class AsetTetapController extends Controller
             ->addColumn('penggunaan', function ($row) {
                 return $row->kibATanah->penggunaan ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -428,6 +439,12 @@ class AsetTetapController extends Controller
             ->addColumn('tahun_pengadaan', function ($row) {
                 return $row->KibBPeralatanmesin->tahun_pengadaan ?? '-';
             })
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -489,6 +506,12 @@ class AsetTetapController extends Controller
             })
             ->addColumn('nomor_kode_tanah', function ($row) {
                 return $row->KibCGedungbangunan->no_kode_tanah ?? '-';
+            })
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
             })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
@@ -555,7 +578,12 @@ class AsetTetapController extends Controller
             ->addColumn('nomor_kode_tanah', function ($row) {
                 return $row->KibDJalanirigasi->no_kode_tanah ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -616,7 +644,12 @@ class AsetTetapController extends Controller
             ->addColumn('jumlah', function ($row) {
                 return $row->KibEAsetlainnya->jumlah ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -691,7 +724,12 @@ class AsetTetapController extends Controller
             ->addColumn('penggunaan', function ($row) {
                 return $row->kibATanah->penggunaan ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -743,6 +781,12 @@ class AsetTetapController extends Controller
             ->addColumn('tahun_pengadaan', function ($row) {
                 return $row->KibBPeralatanmesin->tahun_pengadaan ?? '-';
             })
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -793,6 +837,12 @@ class AsetTetapController extends Controller
             })
             ->addColumn('nomor_kode_tanah', function ($row) {
                 return $row->KibCGedungbangunan->no_kode_tanah ?? '-';
+            })
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
             })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
@@ -848,7 +898,12 @@ class AsetTetapController extends Controller
             ->addColumn('nomor_kode_tanah', function ($row) {
                 return $row->KibDJalanirigasi->no_kode_tanah ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -898,7 +953,12 @@ class AsetTetapController extends Controller
             ->addColumn('jumlah', function ($row) {
                 return $row->KibEAsetlainnya->jumlah ?? '-';
             })
-
+            ->addColumn('harga_beli', function ($row) {
+                return 'Rp ' . number_format($row->harga_beli, 0, ',', '.');
+            })
+            ->addColumn('harga', function ($row) {
+                return 'Rp ' . number_format($row->harga, 0, ',', '.');
+            })
             ->addColumn('tanggal_perolehan', function ($row) {
                 return $row->tanggal_perolehan
                     ? date('d-M-Y', strtotime($row->tanggal_perolehan))
@@ -952,6 +1012,8 @@ class AsetTetapController extends Controller
                 'sertifikat_no' => 'required',
                 'penggunaan' => 'required',
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
+
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -985,6 +1047,8 @@ class AsetTetapController extends Controller
                 'no_bpkb' => 'required',
                 'asal_usul' => 'required',
                 'tahun_pengadaan' => 'required',
+                'harga_beli' => 'required|numeric',
+
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -1018,6 +1082,8 @@ class AsetTetapController extends Controller
                 'status_tanah' => 'required',
                 'no_kode_tanah' => 'required',
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
+
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -1054,6 +1120,8 @@ class AsetTetapController extends Controller
                 'no_kode_tanah' => 'required',
 
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
+
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid
@@ -1088,6 +1156,7 @@ class AsetTetapController extends Controller
                 'jumlah' => 'required',
                 'tahun' => 'required',
                 'asal_usul' => 'required',
+                'harga_beli' => 'required|numeric',
                 'harga' => 'required|numeric', // Harga harus berupa angka
                 'ket' => 'required',
                 'tanggal_perolehan' => 'required|date', // Tanggal perolehan harus berupa tanggal valid

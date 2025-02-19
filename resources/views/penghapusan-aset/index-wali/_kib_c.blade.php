@@ -36,7 +36,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                        
+
                             <th>Jenis Barang / Nama Barang</th>
                             <th>No. Kode</th>
                             <th>No. Register</th>
@@ -50,6 +50,7 @@
                             <th>Status Tanah</th>
                             <th>Nomor Kode Tanah</th>
                             <th>Asal Usul</th>
+                            <th>Harga Beli</th>
                             <th>Harga</th>
                             <th>Tanggal Perolehan Aset</th>
                             <th>Usia Aset</th>

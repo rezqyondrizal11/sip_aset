@@ -50,6 +50,7 @@
                             <th>Nomor Polisi</th>
                             <th>Nomor BPKB</th>
                             <th>Asal Usul</th>
+                            <th>Harga Beli</th>
                             <th>Harga</th>
                             <th>Tanggal Perolehan Aset</th>
                             <th>Usia Aset</th>

@@ -65,6 +65,10 @@
                     name: 'asal_usul'
                 },
                 {
+                    data: 'harga_beli',
+                    name: 'harga_beli'
+                },
+                {
                     data: 'harga',
                     name: 'harga'
                 },

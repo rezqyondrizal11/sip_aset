@@ -111,6 +111,14 @@
         @enderror
     </div>
     <div class="form-group">
+        <label for="harga_beli" class="form-label">Harga Beli</label>
+        <input type="number" class="form-control" id="harga_beli" name="harga_beli"
+            value="{{ old('harga_beli') }}">
+        @error('harga_beli')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group">
         <label for="harga" class="form-label">Harga</label>
         <input type="number" class="form-control" id="harga" name="harga" value="{{ old('harga') }}">
         @error('harga')

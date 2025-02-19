@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('edit/{id}/', [UserController::class, 'edit'])->name('edit');
                 Route::put('update', [UserController::class, 'update'])->name('update');
                 Route::get('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy');
+                Route::post('/update-status', [UserController::class, 'updateStatus'])->name('updateStatus');
             });
 
             //kategori

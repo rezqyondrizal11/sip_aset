@@ -164,16 +164,16 @@
 
                         <td><?= $row->jenisaset->name ?></td>
                         <td><?= $row->nama ?></td>
-                        <td><?= number_format($row->harga) ?></td>
+                        <td>Rp <?= number_format($row->harga, 0, ',', '.') ?></td>
                         <td><?= $row->asal_perolehan ?></td>
-                        <td><?= number_format($row->jumlah_awal) ?></td>
+                        <td><?= number_format($row->jumlah_awal, 0, ',', '.') ?></td>
                         <td>
-                            <?= number_format($row->jumlah_masuk) ?>
+                            <?= number_format($row->jumlah_masuk, 0, ',', '.') ?>
 
                         </td>
                         <td>
 
-                            </a><?= number_format($row->jumlah_keluar) ?>
+                            </a><?= number_format($row->jumlah_keluar, 0, ',', '.') ?>
 
                         </td>
                         <td><?= $row->sisa ?></td>
@@ -188,7 +188,7 @@
                 @endforeach
                 <tr>
                     <th colspan="3">Total : </th>
-                    <th><?= number_format($harga) ?></th>
+                    <th>Rp <?= number_format($harga, 0, ',', '.') ?></th>
                     <th></th>
                     <th><?= number_format($awal) ?></th>
                     <th><?= number_format($masuk) ?></th>
@@ -206,6 +206,11 @@
 
 
 
+        @php
+            use App\Models\User;
+            $walinagari = User::where('role', 'walinagari')->where('status', 1)->first();
+
+        @endphp
         <div class="box-body">
             <table>
                 <tr>
@@ -215,7 +220,7 @@
                         <br><br>
                         <br><br>
                         <br><br>
-                        (...................................)
+                        ({{ $walinagari->name }})
                     </th>
                     <th style="text-align:center;">Sipinang, <?= date('l d M Y') ?>
                         <br>
@@ -223,7 +228,7 @@
                         <br><br>
                         <br><br>
                         <br><br>
-                        (...................................)
+                        ({{ Auth::user() ? Auth::user()->name : '' }})
                     </th>
                 </tr>
             </table>

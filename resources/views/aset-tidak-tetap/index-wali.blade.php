@@ -98,16 +98,16 @@
 
                                 <td><?= $row->jenisaset->name ?></td>
                                 <td><?= $row->nama ?></td>
-                                <td><?= number_format($row->harga) ?></td>
+                                <td>Rp <?= number_format($row->harga, 0, ',', '.') ?></td>
                                 <td><?= $row->asal_perolehan ?></td>
-                                <td><?= number_format($row->jumlah_awal) ?></td>
+                                <td> <?= number_format($row->jumlah_awal, 0, ',', '.') ?></td>
                                 <td>
-                                    <?= number_format($row->jumlah_masuk) ?>
+                                    <?= number_format($row->jumlah_masuk, 0, ',', '.') ?>
 
                                 </td>
                                 <td>
 
-                                    </a><?= number_format($row->jumlah_keluar) ?>
+                                    </a><?= number_format($row->jumlah_keluar, 0, ',', '.') ?>
 
                                 </td>
                                 <td><?= $row->sisa ?></td>
