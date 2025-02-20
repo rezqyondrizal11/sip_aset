@@ -84,7 +84,7 @@ class AsetTidakTetapController extends Controller
         ]);
         // Validasi input
         $validatedData = $request->validate([
-            'id' => 'required|exists:aset_tidak_tetap,id',
+
             'id_jenis_barang' => 'required|integer',
             'nama' => 'required|string|max:255',
             'harga' => 'required|numeric|min:0',
@@ -103,7 +103,6 @@ class AsetTidakTetapController extends Controller
             'tgl_pakai.after_or_equal:tgl_beli' => 'Tanggal pakai harus lebih besar atau sama dengan tanggal beli.',
             'tgl_pakai.after_or_equal:tgl_perolehan_aset' => 'Tanggal pakai harus lebih besar atau sama dengan tanggal perolehan aset.',
         ]);
-
 
         // Logika untuk menghitung jumlah masuk, keluar, dan sisa
         $validatedData['jumlah_masuk'] = $validatedData['jumlah_awal'];
