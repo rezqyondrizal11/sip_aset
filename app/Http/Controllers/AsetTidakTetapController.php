@@ -79,18 +79,31 @@ class AsetTidakTetapController extends Controller
     }
     public function store(Request $request)
     {
+        $request->merge([
+            'harga' => str_replace(['Rp ', '.'], '', $request->harga),
+        ]);
         // Validasi input
         $validatedData = $request->validate([
+            'id' => 'required|exists:aset_tidak_tetap,id',
             'id_jenis_barang' => 'required|integer',
             'nama' => 'required|string|max:255',
             'harga' => 'required|numeric|min:0',
             'asal_perolehan' => 'required|string|max:255',
             'jumlah_awal' => 'required|integer|min:0',
             'keterangan' => 'nullable|string',
-            'tgl_pakai' => 'required|date',
+            'tgl_pakai' => [
+                'required',
+                'date',
+                'after_or_equal:tgl_beli',
+                'after_or_equal:tgl_perolehan_aset',
+            ],
             'tgl_beli' => 'required|date',
             'tgl_perolehan_aset' => 'required|date',
+        ], [
+            'tgl_pakai.after_or_equal:tgl_beli' => 'Tanggal pakai harus lebih besar atau sama dengan tanggal beli.',
+            'tgl_pakai.after_or_equal:tgl_perolehan_aset' => 'Tanggal pakai harus lebih besar atau sama dengan tanggal perolehan aset.',
         ]);
+
 
         // Logika untuk menghitung jumlah masuk, keluar, dan sisa
         $validatedData['jumlah_masuk'] = $validatedData['jumlah_awal'];
@@ -127,6 +140,10 @@ class AsetTidakTetapController extends Controller
 
     public function update(Request $request)
     {
+        $request->merge([
+
+            'harga' => str_replace(['Rp ', '.'], '', $request->harga),
+        ]);
         // Validasi input
         $validatedData = $request->validate([
             'id' => 'required|exists:aset_tidak_tetap,id',
@@ -136,10 +153,19 @@ class AsetTidakTetapController extends Controller
             'asal_perolehan' => 'required|string|max:255',
             'jumlah_awal' => 'required|integer|min:0',
             'keterangan' => 'nullable|string',
-            'tgl_pakai' => 'required|date',
+            'tgl_pakai' => [
+                'required',
+                'date',
+                'after_or_equal:tgl_beli',
+                'after_or_equal:tgl_perolehan_aset',
+            ],
             'tgl_beli' => 'required|date',
             'tgl_perolehan_aset' => 'required|date',
+        ], [
+            'tgl_pakai.after_or_equal:tgl_beli' => 'Tanggal pakai harus lebih besar atau sama dengan tanggal beli.',
+            'tgl_pakai.after_or_equal:tgl_perolehan_aset' => 'Tanggal pakai harus lebih besar atau sama dengan tanggal perolehan aset.',
         ]);
+
 
         // Cari data yang akan diperbarui
         $data = AsetTidakTetap::find($request->id);

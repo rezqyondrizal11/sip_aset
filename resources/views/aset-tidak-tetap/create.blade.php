@@ -21,9 +21,10 @@
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
+
     <div class="form-group">
         <label for="harga" class="form-label">Harga</label>
-        <input type="number" class="form-control" id="harga" name="harga" value="{{ old('harga') }}">
+        <input type="text" class="form-control rupiah" id="harga" name="harga" value="{{ old('harga') }}">
         @error('harga')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -85,9 +86,32 @@
 
 
 <script src="{{ asset('admin') }}/plugins/jQuery/jQuery-2.2.0.min.js"></script>
-
 <script>
-    $('#creatForm').submit(function(e) {
+    function formatRupiah(angka, prefix = 'Rp ') {
+        let numberString = angka.replace(/[^,\d]/g, '').toString();
+        let split = numberString.split(',');
+        let sisa = split[0].length % 3;
+        let rupiah = split[0].substr(0, sisa);
+        let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+            let separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix + rupiah;
+    }
+
+    document.querySelectorAll(' #harga').forEach(input => {
+        input.addEventListener('input', function(e) {
+            let value = this.value.replace(/[^0-9]/g, '');
+            this.value = value ? formatRupiah(value) : '';
+        });
+    });
+</script>
+<script>
+    $('#createForm').submit(function(e) {
         e.preventDefault();
 
         var form = $(this);

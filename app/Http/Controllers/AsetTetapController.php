@@ -76,6 +76,10 @@ class AsetTetapController extends Controller
     }
     public function store(Request $request)
     {
+        $request->merge([
+            'harga_beli' => str_replace(['Rp ', '.'], '', $request->harga_beli),
+            'harga' => str_replace(['Rp ', '.'], '', $request->harga),
+        ]);
         if ($request->id_kategori_aset == 1) {
             // Validasi input
             $this->validate($request, [
@@ -996,6 +1000,10 @@ class AsetTetapController extends Controller
 
     public function update(Request $request)
     {
+        $request->merge([
+            'harga_beli' => str_replace(['Rp ', '.'], '', $request->harga_beli),
+            'harga' => str_replace(['Rp ', '.'], '', $request->harga),
+        ]);
         if ($request->id_kategori_aset == 1) {
             // Validasi input
             $this->validate($request, [
